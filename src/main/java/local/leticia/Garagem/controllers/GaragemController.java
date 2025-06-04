@@ -50,4 +50,15 @@ public class GaragemController {
             return ResponseEntity.ok(result);
         }
     }
+    
+    @GetMapping ("/ano/{ano}")
+    public ResponseEntity<List<VeiculoMinDTO>> findByAno(@PathVariable int ano) {
+        
+        List<VeiculoMinDTO> result = garagemService.findByAno (ano) ;
+        if(result.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(result);
+        }
+    }
 }
