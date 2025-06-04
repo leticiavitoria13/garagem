@@ -24,10 +24,14 @@ public class GaragemController {
     @Autowired
     private GaragemService garagemService;
 
-    @GetMapping("/garagem")
-    public List<Veiculo> findAll() {
-        List<Veiculo> result = garagemService.findAll();
-        return result;
+    @GetMapping("/forsale")
+    public ResponseEntity<List<VeiculoMinDTO>> findAll() {
+        List<VeiculoMinDTO> result = garagemService.findAll();
+         if(result.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(result);
+        }
     }
     
     @GetMapping("/id/{id}")

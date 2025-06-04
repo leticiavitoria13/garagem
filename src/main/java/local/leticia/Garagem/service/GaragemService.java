@@ -21,9 +21,12 @@ public class GaragemService {
     @Autowired
     private GaragemRepository garagemRepository;
 
-    public List<Veiculo> findAll() {
-        List<Veiculo> result = garagemRepository.findAll();
-        return result;
+    public List<VeiculoMinDTO> findAll() {
+        List<Veiculo> resultVeiculo = garagemRepository.findAll();
+        List<VeiculoMinDTO> resultDTO = resultVeiculo.stream()
+                .map(x -> new VeiculoMinDTO(x)).toList();
+                
+        return resultDTO;
     }
     
     public Veiculo findById (long id) {
