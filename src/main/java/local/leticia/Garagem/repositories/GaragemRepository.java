@@ -4,6 +4,7 @@
  */
 package local.leticia.Garagem.repositories;
 
+import java.util.List;
 import local.leticia.Garagem.entities.Veiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,7 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author ppjatb
  */
 public interface GaragemRepository extends JpaRepository<Veiculo, Long >{
-    
+    Veiculo findById(long id);
 }
 
     

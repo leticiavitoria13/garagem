@@ -24,4 +24,9 @@ public class GaragemService {
         List<Veiculo> result = garagemRepository.findAll();
         return result;
     }
+    
+    public Veiculo findById (long id) {
+        Veiculo result = garagemRepository.findById(id);
+        return result;
+    }
 }
