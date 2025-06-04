@@ -5,6 +5,7 @@
 package local.leticia.Garagem.controllers;
 
 import java.util.List;
+import local.leticia.Garagem.DTO.VeiculoMinDTO;
 import local.leticia.Garagem.entities.Veiculo;
 import local.leticia.Garagem.service.GaragemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,16 @@ public class GaragemController {
         if(result == null){
             return ResponseEntity.notFound().build();
         }else{
+            return ResponseEntity.ok(result);
+        }
+    }
+    @GetMapping ("/cor/{corName}")
+    public ResponseEntity<List<VeiculoMinDTO>> findByCorIgnoreCase(@PathVariable String corName) {
+        
+        List<VeiculoMinDTO> result = garagemService.findByCor (corName) ;
+        if(result.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
             return ResponseEntity.ok(result);
         }
     }

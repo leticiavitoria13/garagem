@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface GaragemRepository extends JpaRepository<Veiculo, Long >{
     Veiculo findById(long id);
+    List<Veiculo> findByCorIgnoreCase (String cor);
 }
 
     

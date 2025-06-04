@@ -5,6 +5,7 @@
 package local.leticia.Garagem.service;
 
 import java.util.List;
+import local.leticia.Garagem.DTO.VeiculoMinDTO;
 import local.leticia.Garagem.entities.Veiculo;
 import local.leticia.Garagem.repositories.GaragemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,14 @@ public class GaragemService {
     public Veiculo findById (long id) {
         Veiculo result = garagemRepository.findById(id);
         return result;
+    }
+    
+    public List<VeiculoMinDTO> findByCor (String cor) {
+        List<Veiculo> resultVeiculo = garagemRepository.findByCorIgnoreCase(cor);
+        
+        List<VeiculoMinDTO> resultDTO = resultVeiculo.stream()
+                .map(x -> new VeiculoMinDTO(x)).toList();
+                
+        return resultDTO;
     }
 }
